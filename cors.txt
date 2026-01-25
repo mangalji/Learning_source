@@ -4,4 +4,9 @@ Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allo
 
 An example of a cross-origin request: the front-end JavaScript code served from https://domain-a.com uses fetch() to make a request for https://domain-b.com/data.json.
 
-For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts. For example, fetch() and XMLHttpRequest follow the same-origin policy. This means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers.
+For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts. For example, fetch() and XMLHttpRequest follow the same-origin policy.This means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers.
+
+source from: django_for_api_book : 
+
+CORS
+Cross-Origin Resource Sharing (CORS)59 refers to the fact that whenever a client interacts with an API hosted on a different domain (mysite.com vs yoursite.com) or port (localhost:3000 vs localhost:8000) there are potential security issues. Specifically, CORS requires the web server to include specific HTTP headers that allow for the client to determine if and when cross-domain requests should be allowed. Because we are using a SPA architecture the front-end will be on a different local port during development and a completely different domain once deployed! The easiest way to handle this issue–-and the one recommended by Django REST Framework is to use middleware that will automatically include the appropriate HTTP headers based on our settings. The third-party package django-cors-headers is the default choice within the Django community and can easily added to our  existing project.
